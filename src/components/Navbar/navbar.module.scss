@@ -1,0 +1,90 @@
+@import "../../index.scss";
+
+
+
+.navbar_bg{
+
+    background-image: linear-gradient(to right, #09203F , #537895);
+   
+   position: relative;
+                    ul{
+                        li{
+                            @extend %center;
+                            a{
+                                color: #fff !important;
+                                text-decoration: none;
+                            }
+                            ul{
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50% ,5%);
+                                background-color: #537895;
+                            
+                              
+                                li{
+
+                                    &:hover a{
+                                        color: #000 !important;
+                                        border-radius: 5px;
+                                    }
+                                    a{
+                                        color:$fontColor !important;
+                                        text-decoration: none;
+                                        margin: 10px;
+                                        
+
+
+                                    }
+ 
+                                    
+      
+                                    
+                                }
+                            }
+                        }
+                    }
+              }
+
+.active{
+    background-image: linear-gradient(to right, #614385 , #516395);
+
+    position: relative;
+    ul{
+        li{
+            @extend %center;
+            a{
+                color: #fff !important;
+                text-decoration: none;
+            }
+            ul{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% ,5%);
+                background-color: #537895;
+            
+              
+                li{
+
+                    &:hover a{
+                        color: #000 !important;
+                        border-radius: 5px;
+                    }
+                    a{
+                        color:$fontColor !important;
+                        text-decoration: none;
+                        margin: 10px;
+                        
+
+
+                    }
+
+                    
+
+                    
+                }
+            }
+        }
+    }
+}
