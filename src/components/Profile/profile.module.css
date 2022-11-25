@@ -1,7 +1,19 @@
-.text{
-    color:#f59e0b;
+
+.profile{
+
+    background-color: #f44336;;
 }
-.email{
+
+.text{
+    color:#ffff;
+    margin-bottom: 30px;
+}
+.header{
 
     color: #0d69d5;
+    background-color: aliceblue;
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 50px;
+    font-weight: 900;
 }

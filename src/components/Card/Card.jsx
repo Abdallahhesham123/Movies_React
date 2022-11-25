@@ -21,7 +21,7 @@ function Card({cardInfo}) {
                                        
                                         
                                             {
-              cardInfo.vote_average &&   <span className={(cardInfo.vote_average >= 8) ? `${styled.green}`: (cardInfo.vote_average >= 7) ?`${styled.orange}`: `${styled.red}`}>{cardInfo.vote_average}</span>
+              cardInfo.vote_average ?   <span className={(cardInfo.vote_average >= 8) ? `${styled.green}`: (cardInfo.vote_average >= 7) ?`${styled.orange}`: `${styled.red}`}>{cardInfo.vote_average}</span>: <span className={`${styled.empty}`}>{cardInfo.vote_average}</span>
 
                                             }
                                                      

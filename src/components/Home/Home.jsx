@@ -24,8 +24,10 @@ function Home() {
         <div className="col-md-4">
           <div className="cap">
             <hr className="w-25" />
-            <h2>Trending Movies to Watch Now</h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <h2>Trending </h2>
+            <h5>Movies</h5>
+            <h6>to Watch Now</h6>
+            <p className="text-muted">Lorem ipsum, dolor sit amet consectetur</p>
             <hr />
           </div>
         </div>

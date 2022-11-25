@@ -3,10 +3,10 @@ import { Outlet } from 'react-router-dom'
 import Navbar from '../Navbar/Navbar'
 import Footer from '../Footer/Footer'
 
-function Layout() {
+function Layout({UserData ,LogOut}) {
   return (
     <>
-    <Navbar/>
+    <Navbar UserData={UserData} LogOut={LogOut}/>
     <div className="Layout">
     <Outlet/>
     </div>

@@ -3,7 +3,7 @@ import joi from "joi";
 import React, { useRef ,useEffect,useState} from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "./login.module.scss";
-function Login() {
+function Login({SaveUserData}) {
 
   let emailRef= useRef();
   let navigate =useNavigate();
@@ -18,7 +18,7 @@ function Login() {
     const [validateArrList, setvalidateArrList] = useState([])
 
                         let goToHome =()=>{
-                          navigate("/home" , { replace: true })
+                          navigate("/" , { replace: true })
                         }
 
                         let getData=(e)=>{
@@ -47,6 +47,9 @@ let validationFormData=()=>{
 
                      const {data}= await axios.post(`https://route-egypt-api.herokuapp.com/signin`,user)
                         if(data.message == 'success'){
+
+                          localStorage.setItem("token",data.token)
+                          SaveUserData();
                           goToHome();
 
 
