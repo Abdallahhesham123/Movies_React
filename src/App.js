@@ -12,42 +12,20 @@ import jwtDecode from 'jwt-decode';
 import { useEffect, useState } from 'react';
 import ProtectedRoute from './components/ProtectedRout/ProtectedRoute';
 
+import { Offline, Online } from "react-detect-offline";
+import Movies from './components/Movies/Movies';
+
 function App() {
-const [UserData, setUserData] = useState(null)
-let SaveUserData=()=>{
-
-  let encodedToken = localStorage.getItem("token")
-
-  let decodedToken = jwtDecode(encodedToken)
-
-  setUserData(decodedToken)
-
-
-}
-
-let LogOut= ()=>{
-
-  localStorage.removeItem("token")
-  setUserData(null)
-  return <Navigate to="/login"/>
-}
-
-useEffect(() => {
-  if(localStorage.getItem("token")){
-    SaveUserData();
-
-  }
- 
-}, [])
 
 
   let routes = createBrowserRouter([
     {
-      path: "/", element: <Layout UserData={UserData} LogOut={LogOut}/>,errorElement: <NotFound/>,children: [
+      path: "/", element: <Layout />,errorElement: <NotFound/>,children: [
         // { index: true, element: <Register /> },
-        { index: true, element: <ProtectedRoute UserData={UserData}><Home/></ProtectedRoute>},
-        { path: "login", element:  <Login SaveUserData ={SaveUserData}/> },
-        { path: "profile", element:  <ProtectedRoute UserData={UserData}><Profile UserData={UserData} /> </ProtectedRoute> },
+        { index: true, element: <ProtectedRoute ><Home/></ProtectedRoute>},
+        { path: "movies", element:  <ProtectedRoute><Movies/> </ProtectedRoute> },
+        { path: "login", element:  <Login /> },
+        { path: "profile", element:  <ProtectedRoute><Profile  /> </ProtectedRoute> },
         {path: "register", element: <RegisterUpdate /> },
 
 
@@ -57,7 +35,33 @@ useEffect(() => {
 
   return (
     <>
-  <RouterProvider router={routes}/>
+
+
+
+
+    <Online>
+
+    
+
+    <RouterProvider router={routes}/>
+   
+
+    </Online>
+    <Offline>
+      <div className="container">
+
+        <div className="row justify-content-center align-items-center vh-100">
+
+             <h1 className='text-danger'>  You Are Offline Please Check Your Connection</h1>
+        </div>
+      </div>
+      
+     
+    </Offline>
+
+ 
+
+  
     </>
   );
 }

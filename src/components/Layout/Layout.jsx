@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer'
 function Layout({UserData ,LogOut}) {
   return (
     <>
-    <Navbar UserData={UserData} LogOut={LogOut}/>
+    <Navbar />
     <div className="Layout">
     <Outlet/>
     </div>

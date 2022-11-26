@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navigate } from 'react-router-dom'
+import { AuthContext } from '../../Context/Store'
 
-const ProtectedRoute = ({UserData,children}) => {
-if(UserData == null && localStorage.getItem("token") == null){
+const ProtectedRoute = ({children}) => {
+
+    const {Userdata} = useContext(AuthContext)
+if(Userdata == null && localStorage.getItem("token") == null){
 
     return <Navigate to= "/login"/>
 }else{

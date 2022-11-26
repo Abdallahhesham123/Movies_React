@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from "./Card.module.scss"
+import img from"./../../Assets/images/notfoundImage.jpg" 
 function Card({cardInfo}) {
 
     const Image_url = "https://image.tmdb.org/t/p/w500";
@@ -16,7 +17,7 @@ function Card({cardInfo}) {
                                     <div className={`${styled.title} row jusstify-content-around`}>
                                     
 
-                                            <h6 style={{"font-size":"16px","color":"#0075ff"}}>{cardInfo.original_title ? `${cardInfo.original_title.split(" ").splice(0, 3).join(" ") }` : "Sorry, There is no title"}</h6>
+                                            <h6 style={{"fontSize":"16px","color":"#0075ff"}}>{cardInfo.original_title ? `${cardInfo.original_title.split(" ").splice(0, 3).join(" ") }` : "Sorry, There is no title"}</h6>
 
                                        
                                         
@@ -35,8 +36,8 @@ function Card({cardInfo}) {
                         <img src= {
                           cardInfo.poster_path
                             ? Image_url + cardInfo.poster_path
-                            : ""
-                        } alt="" srcset=""/>
+                            : `${img}`
+                        } alt="" />
                         </div>
                     </div>
 

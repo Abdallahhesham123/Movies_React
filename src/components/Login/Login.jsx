@@ -1,10 +1,11 @@
 import axios from "axios";
 import joi from "joi";
-import React, { useRef ,useEffect,useState} from "react";
+import React, { useRef ,useEffect,useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/Store";
 import styled from "./login.module.scss";
-function Login({SaveUserData}) {
-
+function Login() {
+const {SaveUserData} = useContext(AuthContext)
   let emailRef= useRef();
   let navigate =useNavigate();
   const [user, setuser] = useState({

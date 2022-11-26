@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "./navbar.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import img from "../../Assets/images/logo-dark.webp";
-function Navbar({ UserData, LogOut }) {
+import { AuthContext } from "../../Context/Store";
+function Navbar() {
+
+
+const {Userdata,LogOut} = useContext(AuthContext)
+
   const navBarStyles = ({ isActive }) => {
     return {
-      color: isActive ? "#fff" : "#1ABC9C",
-      background: isActive ? "#1ABC9C" : "transparent",
-      borderRadius: isActive ? "15px" : "",
-      border: isActive ? "2px solid #fff" : "",
+      color: isActive ? "#fff" : "#22254b",
+      background: isActive ? "#22254b" : "transparent",
+      borderRadius: isActive ? "5px" : "",
+      border: isActive ? "1px solid #fff" : "",
       padding: isActive ? "5px" : "",
     };
   };
@@ -60,21 +65,39 @@ function Navbar({ UserData, LogOut }) {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {UserData && (
-                <li className="nav-item">
-                  <NavLink
-                    className="nav-link active"
-                    aria-current="page"
-                    to=""
-                    style={navBarStyles}
-                  >
-                    Home
+              {Userdata && (
+              <>
+              
+              <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to=""
+                        style={navBarStyles}
+                      >
+                        HOME
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/movies"
+                        style={navBarStyles}
+                      >
+                        MOVIES
+                      </NavLink>
+              </li>
+
+              
+              
+              </>
+
+               
               )}
             </ul>
 
-            {UserData && (
+            {Userdata && (
               <form className="d-flex" role="search">
                 <input
                   className="form-control me-2"
@@ -87,7 +110,7 @@ function Navbar({ UserData, LogOut }) {
                 </button>
               </form>
             )}
-            {UserData && (
+            {Userdata && (
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <NavLink
@@ -127,7 +150,7 @@ function Navbar({ UserData, LogOut }) {
                     aria-expanded="false"
                   >
                     <i className="fa-solid fa-user"></i>
-                    <span className="mx-2 text-warning">Hello: {UserData.first_name}</span>
+                    <span className="mx-2 text-warning">Hello: {Userdata.first_name}</span>
                   </NavLink>
 
                   <ul className="dropdown-menu">
@@ -158,7 +181,7 @@ function Navbar({ UserData, LogOut }) {
               </ul>
             )}
 
-            {!UserData && (
+            {!Userdata && (
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                
