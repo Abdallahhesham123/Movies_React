@@ -37,7 +37,7 @@ const MediaContextProvider = (props) => {
   
   return <SearchContext.Provider value={{search,clearData,setmovieName,movieName}}>
 
-{props.Children}
+{props.children}
   </SearchContext.Provider>
 }
 
