@@ -4,7 +4,7 @@ function Footer() {
   return (
     <>
                 <section className={`${styled.credit} fixed-bottom`}>
-            Created by Abdallah-Hesham2022 | all rights reserved!
+            Created by<span className='text-warning'> Abdallah-Hesham</span> 2022 | all rights reserved!
             </section>
     </>
   )
