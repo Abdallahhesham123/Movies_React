@@ -4,7 +4,7 @@ import { createContext } from 'react'
 export let SearchContext=createContext(0)
 
 
-const MediaContextProvider = (props) => {
+const SearchContextProvider = (props) => {
     const [movieName, setmovieName] = useState("")
     const [search,setsearch] = useState([])
   let SearchField =async(movieName1)=>{
@@ -41,4 +41,4 @@ const MediaContextProvider = (props) => {
   </SearchContext.Provider>
 }
 
-export default MediaContextProvider
+export default SearchContextProvider

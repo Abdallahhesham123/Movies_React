@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext,  useEffect,  useState } from "react";
 import styled from "./navbar.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import img from "../../Assets/images/logo-dark.webp";
 import { AuthContext } from "../../Context/Store";
 import axios from "axios";
+import { SearchContext } from "../../Context/SearchContext";
 function Navbar() {
 
 
 const {Userdata,LogOut} = useContext(AuthContext)
-
+const {search,clearData,setmovieName,movieName} = useContext(SearchContext)
   const navBarStyles = ({ isActive }) => {
     return {
       color: isActive ? "#fff" : "#22254b",
@@ -40,32 +41,32 @@ const {Userdata,LogOut} = useContext(AuthContext)
     }
   };
   window.addEventListener("scroll", ChangeBackGround);
-  const [movieName, setmovieName] = useState("")
-  const [search,setsearch] = useState([])
-let SearchField =async(movieName1)=>{
+//   const [movieName, setmovieName] = useState("")
+//   const [search,setsearch] = useState([])
+// let SearchField =async(movieName1)=>{
 
-  const API_key = "api_key=c9a1298150cd4eec6156dbe3922018f2";
-  const Base_URL = "https://api.themoviedb.org/3";
-  const API_URL = Base_URL + `/search/movie?` + API_key +`&query=${movieName1}`;
-  let { data } = await axios.get(API_URL);
+//   const API_key = "api_key=c9a1298150cd4eec6156dbe3922018f2";
+//   const Base_URL = "https://api.themoviedb.org/3";
+//   const API_URL = Base_URL + `/search/movie?` + API_key +`&query=${movieName1}`;
+//   let { data } = await axios.get(API_URL);
 
-  setsearch(data.results);
-};
+//   setsearch(data.results);
+// };
 
-let clearData =()=>{
+// let clearData =()=>{
 
-  setsearch([]);
-  setmovieName("")
+//   setsearch([]);
+//   setmovieName("")
 
-}
+// }
 
-useEffect(()=>{
+// useEffect(()=>{
 
-  SearchField(movieName);
+//   SearchField(movieName);
 
   
 
-},[movieName])
+// },[movieName])
 
 
 
