@@ -8,12 +8,14 @@ import Home from './components/Home/Home';
 import Layout from './components/Layout/Layout';
 import NotFound from './components/NotFound/NotFound';
 import Profile from "./components/Profile/Profile"
-import jwtDecode from 'jwt-decode';
-import { useEffect, useState } from 'react';
+import People from "./components/People/People"
+import Tvshow from "./components/TvShow/Tvshow"
 import ProtectedRoute from './components/ProtectedRout/ProtectedRoute';
-
 import { Offline, Online } from "react-detect-offline";
 import Movies from './components/Movies/Movies';
+import About from './components/About/About';
+import Details from './components/Details/Details';
+import Network from './components/Networks/Network';
 
 function App() {
 
@@ -24,8 +26,12 @@ function App() {
         // { index: true, element: <Register /> },
         { index: true, element: <ProtectedRoute ><Home/></ProtectedRoute>},
         { path: "movies", element:  <ProtectedRoute><Movies/> </ProtectedRoute> },
-        { path: "login", element:  <Login /> },
+        { path: "about", element:  <ProtectedRoute><About/> </ProtectedRoute> },
+        { path: "people", element:  <ProtectedRoute><People/> </ProtectedRoute> },
+        { path: "tv", element:  <ProtectedRoute><Tvshow/> </ProtectedRoute> },
         { path: "profile", element:  <ProtectedRoute><Profile  /> </ProtectedRoute> },
+        { path: "detail/:id/:media", element:  <ProtectedRoute><Details/> </ProtectedRoute> },
+        { path: "login", element:  <Login /> },
         {path: "register", element: <RegisterUpdate /> },
 
 
@@ -50,10 +56,14 @@ function App() {
     <Offline>
       <div className="container">
 
-        <div className="row justify-content-center align-items-center vh-100">
+       
+         
 
-             <h1 className='text-danger'>  You Are Offline Please Check Your Connection</h1>
-        </div>
+          <Network/>
+      
+
+        
+      
       </div>
       
      

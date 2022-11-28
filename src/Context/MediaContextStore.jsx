@@ -6,8 +6,10 @@ export let MediaContext=createContext(0)
 
 
 const MediaContextProvider = (props) => {
-
+ 
     const [TrendingMovies, setTrendingMovies] = useState([]);
+    const [TrendingTVshow, setTrendingTVshow] = useState([]);
+    const [TrendingPeople, setTrendingPeople] = useState([]);
     let getTrendingItems = async (item,callBack) => {
 
                 const API_key = "api_key=c9a1298150cd4eec6156dbe3922018f2";
@@ -22,13 +24,13 @@ const MediaContextProvider = (props) => {
   
     useEffect(() => {
         getTrendingItems("all",setTrendingMovies)
-        // getTrendingItems("moive",setTrendingMovies)
-        // getTrendingItems("tv",setTrendingMovies)
+        getTrendingItems("person",setTrendingPeople)
+        getTrendingItems("tv",setTrendingTVshow)
         
     }, []);
   
 
-  return<MediaContext.Provider value={{TrendingMovies}}>
+  return<MediaContext.Provider value={{TrendingMovies,TrendingTVshow,TrendingPeople}}>
 
 {props.children}
 

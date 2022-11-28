@@ -28,7 +28,7 @@ const Movies = () => {
         </div>
 
        
-          {TrendingMovies.map((ele, index) => (
+          {TrendingMovies.filter((el)=>el.poster_path).slice(0,10).map((ele, index) => (
              <div className="col-md-2" key={index} >
             <Card cardInfo={ele} />
             </div>

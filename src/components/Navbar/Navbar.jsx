@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "./navbar.module.scss";
 import { Link, NavLink } from "react-router-dom";
 import img from "../../Assets/images/logo-dark.webp";
 import { AuthContext } from "../../Context/Store";
+import axios from "axios";
 function Navbar() {
 
 
@@ -39,6 +40,37 @@ const {Userdata,LogOut} = useContext(AuthContext)
     }
   };
   window.addEventListener("scroll", ChangeBackGround);
+  const [movieName, setmovieName] = useState("")
+  const [search,setsearch] = useState([])
+let SearchField =async(movieName1)=>{
+
+  const API_key = "api_key=c9a1298150cd4eec6156dbe3922018f2";
+  const Base_URL = "https://api.themoviedb.org/3";
+  const API_URL = Base_URL + `/search/movie?` + API_key +`&query=${movieName1}`;
+  let { data } = await axios.get(API_URL);
+
+  setsearch(data.results);
+};
+
+let clearData =()=>{
+
+  setsearch([]);
+  setmovieName("")
+
+}
+
+useEffect(()=>{
+
+  SearchField(movieName);
+
+  
+
+},[movieName])
+
+
+
+
+
   return (
     <div>
       <nav
@@ -89,7 +121,36 @@ const {Userdata,LogOut} = useContext(AuthContext)
                       </NavLink>
               </li>
 
-              
+              <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/about"
+                        style={navBarStyles}
+                      >
+                        ABOUT
+                      </NavLink>
+              </li>
+              <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/people"
+                        style={navBarStyles}
+                      >
+                        PEOPLE
+                      </NavLink>
+              </li>
+              <li className="nav-item">
+                      <NavLink
+                        className="nav-link active"
+                        aria-current="page"
+                        to="/tv"
+                        style={navBarStyles}
+                      >
+                        TV
+                      </NavLink>
+              </li>
               
               </>
 
@@ -98,25 +159,80 @@ const {Userdata,LogOut} = useContext(AuthContext)
             </ul>
 
             {Userdata && (
-              <form className="d-flex" role="search">
-                <input
+            <>
+            
+            <input
                   className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={(e)=>setmovieName(e.target.value)}
+                  value={movieName}
+              
                 />
-                <button className="btn btn-outline-warning" type="submit">
-                  Search
-                </button>
-              </form>
+                <div className={`${styled.search_list}`}>
+
+                  {search ?
+                  
+                 search.map((ele ,index)=>{
+
+                  const Image_url = "https://image.tmdb.org/t/p/w500";
+                    return(
+                      <Link to={`/detail/${ele.id}/movie`} key={index} onClick={clearData}>
+                      
+                            <div className={`${styled.search_list_item}`} >
+
+                            <div className={`${styled.img_container}`}>
+                            <img src= {
+                            ele.poster_path 
+                            ? Image_url + ele.poster_path 
+                            : `${img}`
+                            } alt="" />
+                            </div>
+                            <div className={`${styled.search_item_info}`}>
+
+                            <h3>{ele.title}</h3>
+                            <p>{ele.release_date}</p>
+                            </div>
+
+                            </div>
+
+
+                      </Link>
+
+                    )
+
+                 })
+                  
+
+                  
+                  :<>
+                  <div className="container">
+
+                    <div className="row justify-content-center align-items-center vh-100">
+                <h1>nodata</h1>
+                    </div>
+                  </div>
+                  
+                  </>}
+
+
+                </div>
+            
+            
+            
+            </>
+
+
             )}
             {Userdata && (
               <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <NavLink
-                    className="nav-link active"
+                    className={`${styled.none} nav-link active`}
                     aria-current="page"
                     to=" "
+
                   >
                     {" "}
                     <i className="fab fa-facebook-f"></i>
@@ -124,7 +240,7 @@ const {Userdata,LogOut} = useContext(AuthContext)
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    className="nav-link active"
+                    className={`${styled.none} nav-link active`}
                     aria-current="page"
                     to=" "
                   >
@@ -134,7 +250,7 @@ const {Userdata,LogOut} = useContext(AuthContext)
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    className="nav-link active"
+                    className={`${styled.none} nav-link active`}
                     aria-current="page"
                     to=" "
                   >

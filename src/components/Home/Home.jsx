@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 
-import About from "../About/About";
 import Movies from "../Movies/Movies";
+import People from "../People/People";
+import Tvshow from "../TvShow/Tvshow";
 
 
 function Home() {
@@ -14,9 +15,12 @@ function Home() {
     <>
 
 
-    <Movies/>
+          <Movies/>
+          <hr />
 
-   <About/>
+          <Tvshow/>
+           <hr />
+          <People/>
 
 
  
